@@ -1,5 +1,5 @@
 --- Here are the Pico8 API specifications
---- Don't include them in your project, they are meant to beused by a linter
+--- Don't include them in your project, they are meant to be used by a linter
 --- so it can provide autocompletion and documentation
 
 
@@ -540,11 +540,11 @@ function tostr(val, hex) end
 function tonum(str) end
 
 --- number of seconds elasped since the cartridge was run.
----@type number
-time = 0
+---@return number
+function time() end
 --- number of seconds elasped since the cartridge was run.
----@type number
-t = time
+---@return number
+function t() end
 
 -- Get system status where x is:
 -- 0  Memory usage (0..2048)

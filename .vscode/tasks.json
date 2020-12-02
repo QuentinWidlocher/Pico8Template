@@ -4,11 +4,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "compile",
-            "type": "shell",
-            "command": "python3 ./p8_compiler.py ./game.p8 ./index.lua"
-        },
-        {
             "label": "run",
             "type": "shell",
             "command": "pico8 ./game.p8 -show_fps 1",
