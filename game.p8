@@ -9,6 +9,7 @@ __lua__
 #include src/models/entity.model.lua
 #include src/models/camera.model.lua
 
+#include src/init/camera.init.lua
 #include src/init/main.init.lua
 
 #include src/update/camera.update.lua

@@ -29,6 +29,7 @@ function Entity:collide(other_entity)
         and other_entity.y < self.y + self.h and self.y < other_entity.y + other_entity.h
 end
 
+---@return string
 function Entity:to_string()
 	local string = "Printing ".. self.__type .."\n"
 	for key, value in pairs(self) do
