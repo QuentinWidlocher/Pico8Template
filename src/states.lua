@@ -1,5 +1,4 @@
 -- State Machine
-
 GAME_STATES = {
     default = 0,
 }

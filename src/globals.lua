@@ -6,7 +6,7 @@ end
 -- Constants
 
 SCREEN_SIZE = 128
-
+SPRITE_SIZE = 8
 GAMEPAD = {
     UP = 2,
     DOWN = 3,

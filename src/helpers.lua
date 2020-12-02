@@ -68,6 +68,28 @@ function log(text)
     printh(text, "log.txt")
 end
 
+---@param x number
+---@return number
+function fromOct(x)
+    return x * 8
+end
+
+---@param x number
+---@param floor boolean
+---@return number|integer
+function toOct(x, floor)
+    floor = floor or false
+    return floor and flr(x / 8) or x / 8
+end
+
+---@param index integer sprite index
+---@return Vector
+function getSpriteCoord(index)
+    local y = flr(index / 16)
+    local x = ((index / 16)%1) * 16
+    return {x = x, y = y}
+end
+
 -- === Moses === --
 
 M = {}

@@ -462,7 +462,7 @@ function atan2(dx, dy) end
 
 --- round up
 ---@param x number
----@return number
+---@return integer
 function ceil(x) end
 
 --- x cosine, [0..1]
@@ -472,7 +472,7 @@ function cos(x) end
 
 --- round down
 ---@param x number
----@return number
+---@return integer
 function flr(x) end
 
 --- x/y maximum
