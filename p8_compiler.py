@@ -119,7 +119,7 @@ def main(game_filename, main_filename):
 
     with open(game_filename, 'w') as file:
         file.write(begin_content)
-        file.write(lua_content.replace('\n\n', '\n').strip())
+        file.write(lua_content)
         file.write('\n')
         file.write(end_content)
 

@@ -6,7 +6,6 @@ function draw_debug(draw)
         {label = "mem", value = ceil((stat(0)/2048)*100).."%"},
         {label = "cpu", value = ceil(stat(1)*100).."%"},
         {label = "state", value = state},
-        {label = "time", value = TIME.."/"..MAX_TIME},
     }
     for i = 1, #debug do
         local dbg = debug[i]

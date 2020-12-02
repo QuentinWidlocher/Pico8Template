@@ -28,35 +28,10 @@ function write(text,x,y,color1, color2)
     print(text,x+1,y+1,color2)
 end
 
--- Check if array contains value
-function contains(tab, val)
-    for index, value in pairs(tab) do
-        if value == val then
-            return true
-        end
-    end
-
-    return false
-end
-
 function timer(time, maxtime)
     time += 1
     if time > maxtime then time = 0 end
     return time
-end
-
-function get_by_position(table, vector)
-    for value in all(table) do
-        if value.x == vector.x and value.y == vector.y then return value end
-    end
-    return nil
-end
-
-function get_index_by_position(table, vector)
-    for key, value in pairs(table) do
-        if value.x == vector.x and value.y == vector.y then return key end
-    end
-    return nil
 end
 
 function cooltext(text,x,y)
@@ -75,31 +50,4 @@ function supercooltext(text,x,y)
     write(text,x,y+1,0,0)
     print(text,x+1,y+1+1,9)
     print(text,x+1,y+1,10)
-end
-
-function doshake()
-    -- this function does the
-    -- shaking
-    -- first we generate two
-    -- random numbers between
-    -- -16 and +16
-    local shakex=16-rnd(32)
-    local shakey=16-rnd(32)
-
-    -- then we apply the shake
-    -- strength
-    shakex *= shake
-    shakey *= shake
-
-    -- then we move the camera
-    -- this means that everything
-    -- you draw on the screen
-    -- afterwards will be shifted
-    -- by that many pixels
-    camera(shakex,shakey)
-
-    -- finally, fade out the shake
-    -- reset to 0 when very low
-    shake = shake*0.95
-    if (shake<0.05) then shake=0 end
 end

@@ -6,5 +6,5 @@ function _draw()
 end
 
 function draw_game()
-    draw_debug(false)
+    draw_debug(true)
 end
