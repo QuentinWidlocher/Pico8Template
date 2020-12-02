@@ -29,7 +29,7 @@ function write(text,x,y,color1, color2)
 end
 
 function timer(time, maxtime)
-    time += 1
+    time = time + 1
     if time > maxtime then time = 0 end
     return time
 end

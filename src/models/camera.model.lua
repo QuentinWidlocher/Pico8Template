@@ -20,8 +20,8 @@ function Camera:touch_bottom_margin(object)
 end
 
 function Camera:move(dir)
-    self.x += dir.x
-	self.y += dir.y
+    self.x = self.x + dir.x
+	self.y = self.y + dir.y
 	camera(self.x,self.y)
 end
 

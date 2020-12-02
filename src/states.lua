@@ -1,11 +1,11 @@
 -- State Machine
 
-game_states = {
+GAME_STATES = {
     default = 0,
 }
 
-state = game_states.default
+STATE = GAME_STATES.default
 
 function change_state(new_state)
-    state = new_state
+    STATE = new_state
 end
