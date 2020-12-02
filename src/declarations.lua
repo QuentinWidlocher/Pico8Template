@@ -2,6 +2,7 @@
 --- Don't include them in your project, they are meant to be used by a linter
 --- so it can provide autocompletion and documentation
 
+---@alias Color integer
 
 --- play music
 function music() end
@@ -59,7 +60,7 @@ function circ(x, y, r) end
 ---@param x number
 ---@param y number
 ---@param r number radius >= 0
----@param col number color index
+---@param col Color color index
 function circ(x, y, r, col) end
 
 --- draw filled circle
@@ -71,7 +72,7 @@ function circfill(x, y, r) end
 ---@param x number
 ---@param y number
 ---@param r number radius >= 0
----@param col number color index
+---@param col Color color index
 function circfill(x, y, r, col) end
 
 --- reset screen clipping region
@@ -94,13 +95,13 @@ function clip(x, y, w, h, clip_previous) end
 --- clear the screen and reset the clipping rectangle.
 function cls() end
 --- clear the screen and reset the clipping rectangle.
----@param col number color index clear color (default to 0 black)
+---@param col Color color index clear color (default to 0 black)
 function cls(col) end
 
 --- set the current colour to be used by drawing functions to 6
 function color() end
 --- set the current colour to be used by drawing functions
----@param col number color index (default to 6)
+---@param col Color color index (default to 6)
 function color(col) end
 
 --- set cursor and CR/LF margin position
@@ -146,7 +147,7 @@ function line(x0, y0, x1, y1) end
 ---@param y0 number
 ---@param x1 number
 ---@param y1 number
----@param col number color index
+---@param col Color color index
 function line(x0, y0, x1, y1, col) end
 
 --- swaps colour c0 for c1
@@ -160,7 +161,7 @@ function pal(c0, c1) end
 function pal(c0, c1, p) end
 
 --- set transparency for colour to t
----@param col number color index color index
+---@param col Color color index color index
 ---@param t boolean
 function palt(col, t) end
 
@@ -182,7 +183,7 @@ function print(str, x, y) end
 ---@param str string
 ---@param x number
 ---@param y number
----@param col number color index
+---@param col Color color index
 function print(str, x, y, col) end
 
 --- set pixel colour
@@ -192,7 +193,7 @@ function pset(x, y) end
 --- set pixel colour
 ---@param x number
 ---@param y number
----@param color number
+---@param coloColor number
 function pset(x, y, color) end
 
 --- draw rectangle
@@ -206,7 +207,7 @@ function rect(x0, y0, x1, y1) end
 ---@param y0 number
 ---@param x1 number
 ---@param y1 number
----@param col number color index
+---@param col Color color index
 function rect(x0, y0, x1, y1, col) end
 
 --- draw filled rectangle
@@ -220,7 +221,7 @@ function rectfill(x0, y0, x1, y1) end
 ---@param y0 number
 ---@param x1 number
 ---@param y1 number
----@param col number color index
+---@param col Color color index
 function rectfill(x0, y0, x1, y1, col) end
 
 --- get spritesheet pixel colour
@@ -260,7 +261,7 @@ function sset(x, y) end
 --- set spritesheet pixel colour
 ---@param x number
 ---@param y number
----@param col number color index
+---@param col Color color index
 function sset(x, y, col) end
 
 --- draw texture from spritesheet

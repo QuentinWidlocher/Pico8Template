@@ -1,3 +1,4 @@
+---@param draw boolean
 function draw_debug(draw)
 
     if (not draw) then return end
