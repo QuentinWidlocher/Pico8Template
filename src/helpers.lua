@@ -60,3 +60,31 @@ function supercooltext(text,x,y)
     print(text,x+1,y+1+1,9)
     print(text,x+1,y+1,10)
 end
+
+--- log to console AND file
+---@param text string
+function log(text)
+    printh(text)
+    printh(text, "log.txt")
+end
+
+-- === Moses === --
+
+M = {}
+
+--- Maps `f (v, k)` on value-key pairs, collects and returns the results. 
+-- Uses `pairs` to iterate over elements in `t`.
+-- <br/><em>Aliased as `collect`</em>.
+-- @name map
+-- @param t a table
+-- @param f  an iterator function, prototyped as `f (v, k)`
+-- @return a table of results
+-- @see mapi
+function M.map(t, f)
+  local _t = {}
+  for index,value in pairs(t) do
+    local k, kv, v = index, f(value, index)
+    _t[v and kv or k] = v or kv
+  end
+  return _t
+end

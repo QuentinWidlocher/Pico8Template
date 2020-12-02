@@ -1,7 +1,8 @@
 -- Init Game
 
 function _init()
-    cls()
-    printh("\n\n\n\n#################\n\n\n\n")
+    cls() -- clear the screen
+    printh("", "log.txt", true) -- clear the log file
     init_globals()
+    init_camera()
 end
