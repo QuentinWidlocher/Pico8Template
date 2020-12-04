@@ -110,3 +110,41 @@ function M.map(t, f)
   end
   return _t
 end
+
+--@param x number
+--@return integer
+function ceil(x)
+    --It just works (tm)
+ return -flr(-x)
+end
+
+---"Glitches" the screen by copying part of a line into another
+--@param l1 integer line to copy from (optional)
+--@param l2 integer line to copy to (optional)
+--@param amt integer amount of l1 to copy
+function glitch(l1,l2,amt)
+ local amt = amt or flr(rnd(64))
+ local l1 = 0x6000 + 64 * (l1 or flr(rnd(127)))
+ local l2 = 0x6000 + 64 * (l2 or flr(rnd(127))) + flr(rnd(64-amt))
+    
+ memcpy(l2, l1, amt)
+end
+
+---Violently shakes the screen
+--MUST be called at the very start of _draw() to function
+--Triggered by assigning a positive value to shake - could maybe implement a function instead?
+shake = 0
+function screen_shake()
+ local fade = 0.5
+ local amt = 32
+ local offset_x=amt/2-rnd(amt)
+ local offset_y=amt/2-rnd(amt)
+ offset_x*=shake
+ offset_y*=shake
+  
+ camera(offset_x,offset_y)
+ shake*=fade
+ if shake<0.05 then
+   shake=0
+ end
+end
