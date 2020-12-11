@@ -82,40 +82,64 @@ function toOct(x, floor)
     return floor and flr(x / 8) or x / 8
 end
 
----@param index integer sprite index
----@return Vector
-function getSpriteCoord(index)
-    local y = flr(index / 16)
-    local x = ((index / 16)%1) * 16
-    return {x = x, y = y}
+---@param x number
+---@return boolean
+function isInsideScreen(x)
+    return x > 0 and x < SCREEN_SIZE
 end
 
--- === Moses === --
+---@param t table
+---@return table
+function shallowCopy(t)
+    local u = { }
+    for k, v in pairs(t) do u[k] = v end
+    return setmetatable(u, getmetatable(t))
+end
 
-M = {}
-
---- Maps `f (v, k)` on value-key pairs, collects and returns the results. 
--- Uses `pairs` to iterate over elements in `t`.
--- <br/><em>Aliased as `collect`</em>.
--- @name map
--- @param t a table
--- @param f  an iterator function, prototyped as `f (v, k)`
--- @return a table of results
--- @see mapi
-function M.map(t, f)
-  local _t = {}
-  for index,value in pairs(t) do
-    local k, kv, v = index, f(value, index)
-    _t[v and kv or k] = v or kv
+---@param a table
+---@param cmp function
+---@return table
+function sort(a,cmp)
+  for i=1,#a do
+    local j = i
+    while j > 1 and cmp(a[j-1],a[j]) do
+        a[j],a[j-1] = a[j-1],a[j]
+    j = j - 1
+    end
   end
-  return _t
 end
 
---@param x number
---@return integer
-function ceil(x)
-    --It just works (tm)
- return -flr(-x)
+function starts(string,start)
+   return sub(string,1,#start) == start
+end
+
+function str(o, otab)
+    local string = ""
+
+    local tab = otab ~= nil and otab or 0
+    local tabs = function ()
+        local t = ""
+        for i = 1, tab, 1 do
+            t = t.."\t"
+        end
+        return t
+    end
+
+    if type(o) == 'table' then
+        string = string..tabs().."{\n"
+        tab = tab + 1
+        for key, value in pairs(o) do
+            if not starts(key, "__") and type(value) ~= "function" then
+                string = string..tabs()..key.." = "..str(value, tab)..",\n"
+            end
+        end
+        tab = tab - 1
+        string = string..tabs().."}"
+    elseif type(o) ~= "function" then
+        string = string..tostr(o)
+    end
+
+    return string
 end
 
 ---"Glitches" the screen by copying part of a line into another
@@ -139,12 +163,61 @@ function screen_shake()
  local amt = 32
  local offset_x=amt/2-rnd(amt)
  local offset_y=amt/2-rnd(amt)
- offset_x*=shake
- offset_y*=shake
+ offset_x = offset_x * shake
+ offset_y = offset_y * shake
   
  camera(offset_x,offset_y)
- shake*=fade
+ shake = shake * fade
  if shake<0.05 then
    shake=0
  end
+end
+
+---A function that makes sure a number doesn't go outside certain bounds
+--@param val number value to clamp
+--@param a number lower bound
+--@param b number upper bound
+function clamp(val, a, b)
+    if val < a then val = a end
+    if val > b then val = b end
+    return val
+end
+
+function inc(x, v) return x + v end
+function invert(x) return -x end
+
+-- === Moses === --
+
+M = {}
+
+--- Maps `f (v, k)` on value-key pairs, collects and returns the results. 
+-- Uses `pairs` to iterate over elements in `t`.
+-- <br/><em>Aliased as `collect`</em>.
+-- @name map
+-- @param t a table
+-- @param f  an iterator function, prototyped as `f (v, k)`
+-- @return a table of results
+-- @see mapi
+function M.map(t, f)
+  local _t = {}
+  for index,value in pairs(t) do
+    local k, kv, v = index, f(value, index)
+    _t[v and kv or k] = v or kv
+  end
+  return _t
+end
+
+--- filters and returns values passing an iterator test.
+-- <br/><em>Aliased as `filter`</em>.
+-- @name filter
+-- @param t a table
+-- @param f an iterator function, prototyped as `f (v, k)`
+-- @return the filtered values
+-- @see reject
+function M.filter(t, f)
+  local _t = {}
+  for index,value in pairs(t) do
+    if f(value,index) then _t[#_t+1] = value end
+  end
+  return _t
 end

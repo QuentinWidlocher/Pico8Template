@@ -10,6 +10,6 @@ function draw_debug(draw)
     }
     for i = 1, #debug do
         local dbg = debug[i]
-        write(dbg.label..":"..dbg.value, main_camera.x+1, main_camera.y + (SCREEN_SIZE - 8*i), 0,7)
+        write(dbg.label..":"..dbg.value, main_camera.pos.x+1, main_camera.pos.y + (SCREEN_SIZE - 8*i), 0,7)
     end 
 end

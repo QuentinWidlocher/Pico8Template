@@ -5,4 +5,6 @@ function _init()
     printh("", "log.txt", true) -- clear the log file
     init_globals()
     init_camera()
+
+    foreach(GameObject.pool, function (o) o:init() end)
 end

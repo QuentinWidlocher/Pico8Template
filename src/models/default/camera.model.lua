@@ -1,20 +1,24 @@
 -- Camera Class
 
----@class Camera : Entity
+---@class Camera : Object
+---@field public Vector number
 ---@field public speed number
 ---@field public margin number
-Camera = Entity:new({
+Camera = Object:new({
+    pos = Vector:new(),
     speed = 1,
     margin = 0,
+
+    __type = "Camera",
 })
 
----@param object Entity
+---@param object Box
 ---@return boolean
 function Camera:touch_top_margin(object)
     return object.y > self.y + (SCREEN_SIZE/2) + self.margin
 end
 
----@param object Entity
+---@param object Box
 ---@return boolean
 function Camera:touch_bottom_margin(object)
     return object.y < self.y + (SCREEN_SIZE/2) - self.margin
@@ -26,5 +30,3 @@ function Camera:move(dir)
 	self.y = self.y + dir.y
 	camera(self.x,self.y)
 end
-
-main_camera = Camera:new()

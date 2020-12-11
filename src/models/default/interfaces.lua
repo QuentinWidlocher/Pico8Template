@@ -1,0 +1,3 @@
+--- Here are some useful object types
+--- Don't include them in your project, they are meant to be used by a linter
+--- so it can provide autocompletion and documentation

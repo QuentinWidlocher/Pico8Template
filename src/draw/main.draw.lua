@@ -7,4 +7,6 @@ end
 
 function draw_game()
     draw_debug(true)
+
+    foreach(GameObject.pool, function (o) o:draw() end)
 end
